@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>AIF Challenge</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="{% static 'assets/css/home_styles.min.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button">
+        <div class="container"><a class="navbar-brand" ><span style="color:rbg(255,255,255);"><img src="{% static 'assets/img/ai_proptit.png' %}" class="icon-ai-home">AIF Challenge</span> </a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav nav-right">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" style="color: rgb(255,255,255);" href="{% url 'home' %}"><i class="fa fa-home icon-nav-item" id="icon-nav-1"></i><b>Home</b></a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);"><i class="icon ion-android-desktop icon-nav-item" id="icon-nav-2"></i>Challenges</a>
+                        <div class="dropdown-menu" role="menu">
+                            {% for chlg in lst_chlg %}
+                                <a class="dropdown-item" role="presentation" href="{% url 'challenge' %}{{chlg.id}}">{{chlg.name}}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                </ul>
+                <p class="ml-auto navbar-text actions"> <a class="btn btn-light action-button" role="button" href="{% url 'logout' %}">Logout</a></p>
+            </div>
+        </div>
+    </nav>
+	<!-- Paradise Slider -->
+	<div id="fw_al_001" class="carousel slide ps_slide_y ps_indicators_y swipe_y ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2500">
+
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#fw_al_001" data-slide-to="0" class="active" style="background-color: floralwhite ; border-color: dodgerblue"></li>
+			<li data-target="#fw_al_001" data-slide-to="1" style="background-color: floralwhite ; border-color: dodgerblue"></li>
+			<li data-target="#fw_al_001" data-slide-to="2" style="background-color: floralwhite ; border-color: dodgerblue"></li>
+		</ol>
+
+		<!-- Wrapper For Slides -->
+		<div class="carousel-inner" role="listbox">
+
+			<!-- First Slide -->
+			<div class="carousel-item active">
+
+				<!-- Slide Background -->
+				<img src="{% static 'assets/img/slider_1_large.jpg' %}" alt="fw_al_001_01">
+
+				<!-- Slide Text Layer -->
+				<div class="fw_al_001_slide">
+					<h3 data-animation="animated fadeInUp">We Are AI Force</h3>
+					<h1 data-animation="animated fadeInUp">Together We Are Rising</h1>
+				</div>
+			</div>
+			<!-- End of Slide -->
+
+			<!-- Second Slide -->
+			<div class="carousel-item">
+
+				<!-- Slide Background -->
+				<img src="{% static 'assets/img/slider_1_large.jpg' %}" alt="fw_al_001_02">
+
+				<!-- Slide Text Layer -->
+				<div class="fw_al_001_slide">
+					<h3 data-animation="animated fadeInUp">Chúng Tôi Là AI Force</h3>
+					<h1 data-animation="animated fadeInUp">Chúng Tôi Cùng Nhau Vươn Lên</h1>
+				</div>
+			</div>
+			<!-- End of Slide -->
+
+			<!-- Third Slide -->
+			<div class="carousel-item">
+
+				<!-- Slide Background -->
+				<img src="{% static 'assets/img/slider_1_large.jpg' %}" alt="fw_al_001_03">
+
+				<!-- Slide Text Layer -->
+				<div class="fw_al_001_slide">
+					<h3 data-animation="animated fadeInUp">Nosotros somos AI Force</h3>
+					<h1 data-animation="animated fadeInUp">Juntos Nos Estamos Levantando</h1>
+				</div>
+			</div>
+			<!-- End of Slide -->
+
+		</div><!-- End of Wrapper For Slides -->
+
+	</div> <!-- End Paradise Slider -->
+
+	
+
+
+ <!-- End -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/js/home_script.min.js' %}"></script>
+</body>
+
+</html>
