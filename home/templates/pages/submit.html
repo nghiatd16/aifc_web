@@ -76,7 +76,15 @@
                 {% for mem in ranking_table %}
                     <tr>
                         <td>{{mem.0}}</td>
-                        <td>{{mem.1}}</td>
+                        {% if mem.4 == "red" %}
+                            <td style="color:rgb(255,0,0);"><b>{{mem.1}}</b></td>
+                        {% else %}
+                            {% if mem.4 == 'blue' %}
+                                <td style="color:rgb(0,0,255);"><b>{{mem.1}}</b></td>
+                            {% else %}
+                                <td><b>{{mem.1}}</b></td>
+                            {% endif %}
+                        {% endif %}
                         <td>{{mem.2}}</td>
                         <td>{{mem.3}}</td>
                     </tr>

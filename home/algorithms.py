@@ -19,8 +19,19 @@ def ranking(challenge):
     final_rank = []
     for idx, submit in enumerate(sorted_lst_sub):
         mem = submit.member
-        lst_data = [str(idx+1), mem.get_show_name(), str(mem.gen), "{}%".format(submit.result)]
+        if mem.id == 2:
+            lst_data = [str(idx+1), mem.get_show_name(), str(mem.gen), "{}".format(submit.result), 'black']
+        elif mem.id == 1:
+            lst_data = [str(idx+1), mem.get_show_name(), str(mem.gen), "{}".format(submit.result), 'red']
+        else:
+            lst_data = [str(idx+1), mem.get_show_name(), str(mem.gen), "{}".format(submit.result), 'blue']
         final_rank.append(lst_data)
     for mem in no_sub:
-        final_rank.append(["Unranking", mem.get_show_name(), str(mem.gen), "No Submission Judged"])
+        if mem.id == 2:
+            final_rank.append(["Unranking", mem.get_show_name(), str(mem.gen), "No Submission Judged", 'black'])
+        elif mem.id == 1:
+            final_rank.append(["Unranking", mem.get_show_name(), str(mem.gen), "No Submission Judged", 'red'])
+        else:
+            final_rank.append(["Unranking", mem.get_show_name(), str(mem.gen), "No Submission Judged", 'blue'])
+    # print(final_rank)
     return final_rank
