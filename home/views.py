@@ -3,6 +3,7 @@ from django.contrib.auth import decorators
 from .models import Challenge, Member, Submission
 from django.conf import settings
 from .algorithms import ranking
+import pandas as pd
 # Create your views here.
 
 
@@ -33,7 +34,7 @@ def challenge(request, id=1):
         elif submit_file.name.split('.')[-1] not in settings.ALLOWED_EXTENSION:
             data['server_msg'] = "Your submission is denied. " \
                                  "Your file is not allowed"
-
+        # df.set_index('name')['coverage'].to_dict()
         try:
             new_sub = Submission(member=user, challenge=chlg, file=submit_file)
             new_sub.save()
@@ -41,6 +42,28 @@ def challenge(request, id=1):
         except Exception as e:
             data['server_msg'] = "Error while interacting with database. {}".format(e)
 
+        model_solution = chlg.model_solution.file
+        df = pd.read_csv(model_solution)
+        result_dict = df.set_index('ImageID')['Label'].to_dict()
+        try:
+            sub_file = new_sub.file.file
+            df = pd.read_csv(sub_file)
+            sub_dict = df.set_index('ImageID')['Label'].to_dict()
+            total_c = 0
+            good_pred = 0
+            for key in result_dict:
+                total_c += 1
+                try:
+                    if result_dict[key] == sub_dict[key]:
+                        good_pred += 1
+                except:
+                    data['server_msg'] = "File submited has wrong format"
+            score = good_pred/total_c
+            new_sub.result = score
+            new_sub.save()
+            data['server_msg'] = "Last submission has result: {}".format(score)
+        except:
+            data['server_msg'] = "File submited is illegal"
     if user.last_name is not None or user.first_name is not None:
         full_name = user.last_name + " " + user.first_name + " - Challenge {}".format(chlg)
     else:

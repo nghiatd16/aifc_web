@@ -23,7 +23,7 @@ class Member(AbstractUser):
 
 class Challenge(models.Model):
     name = models.CharField(max_length=100)
-
+    model_solution = models.FileField(null=True)
     def __str__(self):
         return self.name
 
